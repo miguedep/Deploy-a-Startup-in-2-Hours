@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  selector:
+    matchLabels:
+      component: web
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+      - name: client
+        image: miguedep/deployastartupin2hours_react_nginx:v1
+        env:
+        - name: API_URL
+          value: server-cluster-ip-service.default.svc.cluster.local
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: miguedep/deployastartupin2hours_api:v1
+          env:
+          - name: REDIS_HOST
+            value: redis-cluster-ip-service.default.svc.cluster.local
+          - name: REDIS_PORT
+            value: "6379"
+        
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: redis
+  template:
+    metadata:
+      labels:
+        component: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis

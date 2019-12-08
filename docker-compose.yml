@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  redis-server:
+    image: 'redis'
+    restart: always
+  node-app:
+    restart: always
+    build: .
+    ports:
+      - '3001:3001'
+  web-app:
+    restart: always
+    build: ./client
+    ports:
+      - '80:80'
