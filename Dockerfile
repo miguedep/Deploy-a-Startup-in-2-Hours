@@ -1,7 +1,8 @@
 FROM node:13.2.0-alpine
-WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json /app/package.json
-RUN npm install --silent
-COPY . /app
+USER node
+RUN mkdir /home/node/app
+WORKDIR /home/node/app
+COPY --chown=node:node package-lock.json package.json ./
+RUN npm ci
+COPY --chown=node:node . .
 CMD ["npm", "run","start-express-cron"]
