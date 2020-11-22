@@ -44,11 +44,11 @@ alt="Plan, Code, and Deploy a Startup in 2 Hours [Full Stack JavaScript Tutorial
 6. If you want to stop the containers exec docker-compose down.
 7. ## Don't forget to open the ports. You can see my ports in the picture below.
 
-![Security Groups config](https://github.com/miguedep/Deploy-a-Startup-in-2-Hours/blob/master/images/sg.png "Security Groups config")
+![Security Groups config](https://github.com/miguedep/Deploy-a-Startup-in-2-Hours/blob/master/images/sg.png 'Security Groups config')
 
 It can be done with AWS free tier so it will cost \$0 if you choose an EC2 (t2.micro)
 My deployment in AWS - http://jr-job.deeplearningerp.com
 
 Note: This is not a secure deployment. It was made for learning purposes, so people can play with docker and deploy it in the cloud.
 
-Thanks freeCodeCamp!
+Thanks freeCodeCamp!!
